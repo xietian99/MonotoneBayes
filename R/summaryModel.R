@@ -1,0 +1,72 @@
+#' sumStats
+#'
+#' @param model rstan object, including the result from monotoneBayes()
+#' @param AllPara default F, if T then return all parameter in the model including c,tau,and lambda
+#' @param ndigit default 3, the digits of results
+#' @param orgHS default F, only T when the model is fitted via original HS method
+#'
+#' @return The summary statistics of fitted model
+#' @export
+#'
+#'@importFrom stats median
+
+sumStats = function(model, AllPara = F, ndigit = 3, orgHS = F){ # find the posterior distribution of Gamma, IntAlpha, alpha , lambda, and inte
+  if (AllPara == T){
+    if (orgHS == T){ # then no c_sq parameter
+      outcome = round(rstan::summary(model, pars =c("gamma","tau_sq","alpha","lambda_sq"))$summary, ndigit)
+    } else {
+      outcome = round(rstan::summary(model, pars =c("gamma","c_sq","tau_sq", "alpha","lambda_sq"))$summary, ndigit)
+    }
+  } else {
+    outcome.sum = round(rstan::summary(model, probs = c(0.5, 0.05, 0.25, 0.75, 0.95), pars =c("gamma", "alpha"))$summary, ndigit)
+    outcome = rbind(outcome.sum[1,], 0, outcome.sum[-1,])
+    outcome[2,] = colSums(outcome.sum[-1,])
+    outcome[2,c(2,3,5:10)] = NA
+  }
+  return(outcome)
+}
+
+
+
+#' plotModel
+#'
+#' @param model rstan object, including the result from monotoneBayes()
+#' @param L user-defined interval
+#' @param method fitted curve use either posteiror "mean" or "median"
+#'
+#' @return a list
+#' $FittedProb: a data frame list the estimated value at specific points of [0,1]
+#' $plots: the fitted model curve
+#' @export
+#'
+#'
+#' @importFrom rstan extract
+#' @importFrom ggplot2 ggplot geom_line ylim
+plotModel = function(model,L,method = "mean"){
+  y = x = seq(0, 1, length.out = 100)
+  outcome = rstan::extract(model)
+  if(method == "median"){
+    estAlphas = apply(outcome$alpha, 2, median)
+    estGamma = median(outcome$gamma)
+  } else {
+    estAlphas = colMeans(outcome$alpha)
+    estGamma = mean(outcome$gamma)
+  }
+  denominator = sum(estAlphas)/L + 1 + estGamma
+  x.J = x %/% (1/L) + 1
+  for (i in 1:length(x)){
+    if (x.J[i] == 1) {
+      y[i] = ( x[i] * estAlphas[1] +  1) / denominator
+    } else {
+      y[i] = ( sum(estAlphas[1:(x.J[i]-1)])/L + (x[i]-(x.J[i]-1) *1.0/L) * estAlphas[x.J[i]] +
+                        1 ) / denominator
+    }
+  }
+  df = data.frame("x" = x, "EstPr.Y" = y)
+  plt = ggplot2::ggplot() + ggplot2::geom_line(ggplot2::aes(x = x, y = y)) + ggplot2::ylim(0,1)
+  rs = list(df, plt)
+  names(rs) = c("FittedProb", "Curve")
+  return(rs)
+}
+
+
