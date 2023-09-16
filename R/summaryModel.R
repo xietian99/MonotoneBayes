@@ -22,6 +22,7 @@ sumStats = function(model, AllPara = F, ndigit = 3, orgHS = F){ # find the poste
     outcome = rbind(outcome.sum[1,], 0, outcome.sum[-1,])
     outcome[2,] = colSums(outcome.sum[-1,])
     outcome[2,c(2,3,5:10)] = NA
+    rownames(outcome)[1:2] = c("gamma","IntAlpha")
   }
   return(outcome)
 }

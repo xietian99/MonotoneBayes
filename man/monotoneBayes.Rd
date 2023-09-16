@@ -13,7 +13,8 @@ monotoneBayes(
   fix = F,
   c_alpha = 0.01,
   c_beta = 0.01 * 4,
-  prior = "Regularized HS"
+  prior = "Regularized HS",
+  ...
 )
 }
 \arguments{
@@ -25,11 +26,17 @@ monotoneBayes(
 
 \item{tau0}{input hyperparameter}
 
+\item{c_sq}{fixed C_sq value for regularized HS with fixed C.}
+
+\item{fix}{default F}
+
 \item{c_alpha}{input hyperparameter for c}
 
 \item{c_beta}{input hyperparameter for c}
 
 \item{prior}{choose the shrinkage prior to use, can be "Regularized HS", "Orginal HS", "Laplacian" and "Gaussian"}
+
+\item{...}{chain parameter passing to stan, inclcuding iter, warmup, control ,...}
 }
 \value{
 a list

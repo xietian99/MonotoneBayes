@@ -1,0 +1,49 @@
+---
+title: "intro"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r setup}
+library(MonotoneBayes)
+```
+
+To use the function `monotoneBayes()`, we first generate a dataset, try $p = 0, 0.2, 0.5, 0.8, 1$ respectively to see if we estimated 0 $\alpha_j's$.
+
+```{r eval=FALSE, include=TRUE}
+N = 50
+L = 10
+set.seed(108)
+trueP = c(0,0.2,0.5,0.8,1)
+data = matrix(0, nrow = N, ncol = length(trueP)+1)
+data[,1] = runif(N, 0, 1)
+for (i in 1:length(trueP)){
+  data[,i+1] = rbinom(N,1,prob = trueP[i])
+}
+colnames(data) = c("x",paste("m",1:5,sep = ""))
+
+model1 = monotoneBayes(data[,"x"], data[,"m1"])
+model2 = monotoneBayes(data[,"x"], data[,"m2"])
+model3 = monotoneBayes(data[,"x"], data[,"m3"], warmup = 5000)
+model4 = monotoneBayes(data[,"x"], data[,"m4"])
+model5 = monotoneBayes(data[,"x"], data[,"m5"])
+
+rs1 = sumStats(model1, ndigit = 3)
+rs2 = sumStats(model2, ndigit = 3)
+rs3 = sumStats(model3, ndigit = 3)
+rs4 = sumStats(model4, ndigit = 3)
+rs5 = sumStats(model5, ndigit = 3)
+```
+
+

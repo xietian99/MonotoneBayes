@@ -7,6 +7,9 @@
 #' @param tau0 input hyperparameter
 #' @param c_alpha input hyperparameter for c
 #' @param c_beta input hyperparameter for c
+#' @param c_sq fixed C_sq value for regularized HS with fixed C.
+#' @param fix default F
+#' @param ... chain parameter passing to stan, inclcuding iter, warmup, control ,...
 #'
 #' @return a list
 #' $model: the model result
@@ -22,7 +25,7 @@
 
 monotoneBayes = function(X, Y, L = 10, tau0 = 1e-4,
                          c_sq = 10^2, fix = F,
-                         c_alpha = 0.01, c_beta = 0.01 * 4, prior = "Regularized HS"){
+                         c_alpha = 0.01, c_beta = 0.01 * 4, prior = "Regularized HS", ...){
   N = length(Y)
   data.L = X %/% (1/L) + 1
   dt.stan = list(Y=Y, X = X, J = data.L,  L=L, N=N,
@@ -30,7 +33,7 @@ monotoneBayes = function(X, Y, L = 10, tau0 = 1e-4,
                   global_dof_stan = 1,
                   tau0_sq = tau0^2)
   if (prior == "Original HS"){
-    model = rstan::sampling(stanmodels$OrgHS, data = dt.stan)
+    model = rstan::sampling(stanmodels$OrgHS, data = dt.stan, ...)
   } else if (prior == "Laplacian"){
     model = "Laplacian ... TBD..."
   } else if (prior == "Gaussian ... TBD..."){
@@ -38,11 +41,11 @@ monotoneBayes = function(X, Y, L = 10, tau0 = 1e-4,
   } else {
     if (fix == T) {
       dt.stan$c_sq = c_sq
-      model = rstan::sampling(stanmodels$RegHSfix, data = dt.stan)
+      model = rstan::sampling(stanmodels$RegHSfix, data = dt.stan, ...)
     } else {
       dt.stan$c_sq_shape = c_alpha
       dt.stan$c_sq_scale = c_beta
-      model = rstan::sampling(stanmodels$RegHS, data = dt.stan)
+      model = rstan::sampling(stanmodels$RegHS, data = dt.stan, ...)
     }
   }
 
