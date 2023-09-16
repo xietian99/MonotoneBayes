@@ -35,7 +35,7 @@ colnames(data) = c("x",paste("m",1:5,sep = ""))
 
 model1 = monotoneBayes(data[,"x"], data[,"m1"])
 model2 = monotoneBayes(data[,"x"], data[,"m2"])
-model3 = monotoneBayes(data[,"x"], data[,"m3"], warmup = 5000)
+model3 = monotoneBayes(data[,"x"], data[,"m3"], warmup = 3000)
 model4 = monotoneBayes(data[,"x"], data[,"m4"])
 model5 = monotoneBayes(data[,"x"], data[,"m5"])
 
