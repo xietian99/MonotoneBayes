@@ -8,11 +8,13 @@ monotoneBayes(
   X,
   Y,
   L = 10,
-  tau0 = 1e-04,
+  tau0 = 0.01,
+  nodes = seq(0, 1, length.out = 10 + 1),
+  Eq.Space = T,
   c_sq = 10^2,
   fix = F,
-  c_alpha = 0.01,
-  c_beta = 0.01 * 4,
+  c_alpha = 1,
+  c_beta = 1 * 4,
   prior = "Regularized HS",
   ...
 )
@@ -25,6 +27,10 @@ monotoneBayes(
 \item{L}{input the number of user-defined interval}
 
 \item{tau0}{input hyperparameter}
+
+\item{nodes}{default 0,1/L,2/L,...L/L: user-defined nodes point}
+
+\item{Eq.Space}{default T, should be F when user defined interval not equal space}
 
 \item{c_sq}{fixed C_sq value for regularized HS with fixed C.}
 

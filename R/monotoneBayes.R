@@ -10,6 +10,8 @@
 #' @param c_sq fixed C_sq value for regularized HS with fixed C.
 #' @param fix default F
 #' @param ... chain parameter passing to stan, inclcuding iter, warmup, control ,...
+#' @param nodes default 0,1/L,2/L,...L/L: user-defined nodes point
+#' @param Eq.Space default T, should be F when user defined interval not equal space
 #'
 #' @return a list
 #' $model: the model result
@@ -22,13 +24,27 @@
 #' monotoneBayes(X, Y)
 #'
 #' @importFrom rstan sampling stan
+#' @importFrom stats quantile
 
-monotoneBayes = function(X, Y, L = 10, tau0 = 1e-4,
+monotoneBayes = function(X, Y, L = 10, tau0 = 1e-2, nodes = seq(0,1,length.out = 10+1), Eq.Space = T,
                          c_sq = 10^2, fix = F,
-                         c_alpha = 0.01, c_beta = 0.01 * 4, prior = "Regularized HS", ...){
+                         c_alpha = 1, c_beta = 1 * 4, prior = "Regularized HS", ...){
   N = length(Y)
-  data.L = X %/% (1/L) + 1
-  dt.stan = list(Y=Y, X = X, J = data.L,  L=L, N=N,
+  if (Eq.Space == F) {
+    #nodes = (nodes - min(X))/(max(X) - min(X))
+    #X = (X - min(X))/(max(X) - min(X))
+    data.J = rowSums(outer(X, nodes, "-")>=0)
+    data.J[data.J>=L] = L
+    data.W = nodes[2:(L+1)]- nodes[1:L]
+  } else {
+    nodes = seq(0, 1, length.out = L+1)
+    #X = (X - min(X))/(max(X) - min(X))
+    data.J = X %/% (1/L) + 1
+    data.W = 1/L
+  }
+
+
+  dt.stan = list(Y=Y, X = X, J = data.J,  W = data.W, nodes = nodes, L=L, N=N,
                   local_dof_stan = 1,
                   global_dof_stan = 1,
                   tau0_sq = tau0^2)

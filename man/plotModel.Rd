@@ -4,7 +4,7 @@
 \alias{plotModel}
 \title{plotModel}
 \usage{
-plotModel(model, L, method = "mean")
+plotModel(model, L, method = "mean", grid.eq = T, node.t)
 }
 \arguments{
 \item{model}{rstan object, including the result from monotoneBayes()}
@@ -12,6 +12,10 @@ plotModel(model, L, method = "mean")
 \item{L}{user-defined interval}
 
 \item{method}{fitted curve use either posteiror "mean" or "median"}
+
+\item{grid.eq}{default T for equal spacing}
+
+\item{node.t}{if grid.eq == T, equally spaced nodes at 0-1, or when grid.eq = F, this should be user-defined node point}
 }
 \value{
 a list

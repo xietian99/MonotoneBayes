@@ -1,9 +1,11 @@
 // Continuos Monotone Model
 // The input data is a matrix of rows 'N', consisting of 'X', 'Y', and fixed "L" used for model definition
 data {
-  // Define N, L, Y[N], X[N], M is estimated non-zero alphas.
+  // Define N, L, Y[N], X[N],
   int<lower=0> N;
   int<lower=1> L;
+  vector<lower=0.0, upper=1.0>[L+1] nodes; // user-defined node point
+  vector<lower=0.0, upper=1.0>[L] W; // user-defined length of each interval
   int<lower = 0, upper = 1> Y[N]; // outcome binary variable
   vector<lower=0.0, upper=1.0>[N] X; // dose level
   int<lower = 1, upper = L> J[N]; // which interval X falls in
@@ -32,6 +34,7 @@ parameters {
 transformed parameters {
   // Interested: alphas and betas
   vector<lower = 0.0>[L] alpha;
+  vector<lower = 0.0>[L] cumsum_alphaW;
 
   // Used parameter
   vector<lower = 0.0>[L] theta; // alpha = alpha_base * theta
@@ -57,26 +60,25 @@ transformed parameters {
 
   //phil note that tau_sq is *unscaled* by tau0.
   tau_sq = tau_base_sq * tau_scale_sq;
-
-  // beta0 = sqrt(beta0_base_sq * beta0_scale_sq * sigma0_sq);
-  // beta1 = sqrt(beta1_base_sq * beta1_scale_sq * sigma1_sq);
-
   lambda_sq = lambda_base_sq .* lambda_scale_sq;
   for (i in 1:L){
     //phil below is where scaling by tau0 comes into play.
     theta[i] = sqrt( tau0_sq * tau_sq * lambda_sq[i] );
   }
   alpha = alpha_base .* theta;
-  denominator = sum(alpha)/L + 1 + gamma;
+  denominator = sum(alpha.*W) + 1 + gamma;
+  cumsum_alphaW = cumulative_sum(alpha.*W);
   for (i in 1:N){
     if (J[i] == 1)
       p[i] = ( X[i] * alpha[1] + 1 ) / denominator  ;
     else
-      p[i] = ( sum(alpha[1:(J[i]-1)])/L + (X[i]-(J[i]-1) *1.0/L) * alpha[J[i]] + 1  ) / denominator;
+      p[i] = ( cumsum_alphaW[J[i]-1] + (X[i]-nodes[J[i]-1]) * alpha[J[i]] + 1  ) / denominator;
   }
+
   xi[1] = 1 / denominator;
   for(i in 2:(L+1)) {
-    xi[i] = (1 + sum(alpha[1:(i-1)]) / L) / denominator;
+    xi[i] = ( cumsum_alphaW[i-1] + 1) / denominator;
+
   }
 
 }
