@@ -59,8 +59,8 @@ transformed parameters {
     theta[i] = 1 / sqrt( 1/(tau0_sq * tau_sq * lambda_sq[i]) + 1/c_sq );
   }
   alpha = alpha_base .* theta;
-  denominator = sum(alpha.*W) + 1 + gamma;
-  cumsum_alphaW = cumulative_sum(alpha.*W);
+  denominator = sum(alpha .* W) + 1 + gamma;
+  cumsum_alphaW = cumulative_sum(alpha .* W);
   for (i in 1:N){
     if (J[i] == 1)
       p[i] = ( X[i] * alpha[1] + 1 ) / denominator  ;
