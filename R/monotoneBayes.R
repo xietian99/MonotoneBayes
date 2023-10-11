@@ -4,7 +4,7 @@
 #' @param Y input binary response variable
 #' @param prior choose the shrinkage prior to use, can be "Regularized HS", "Orginal HS", "Laplacian" and "Gaussian"
 #' @param L input the number of user-defined interval
-#' @param tau0 input hyperparameter
+#' @param tau0_sq Input hyper-parameter for tau
 #' @param c_alpha input hyperparameter for c
 #' @param c_beta input hyperparameter for c
 #' @param c_sq fixed C_sq value for regularized HS with fixed C.
@@ -26,9 +26,9 @@
 #' @importFrom rstan sampling stan
 #' @importFrom stats quantile
 
-monotoneBayes = function(X, Y, L = 10, tau0 = 1e-2, nodes = seq(0,1,length.out = 10+1), Eq.Space = T,
+monotoneBayes = function(X, Y, L = 10, tau0_sq = 1e-2, nodes = seq(0,1,length.out = 10+1), Eq.Space = T,
                          c_sq = 10^2, fix = F,
-                         c_alpha = 1, c_beta = 1 * 4, prior = "Regularized HS", ...){
+                         c_alpha = 1, c_beta = 1 * 200, prior = "Regularized HS", ...){
   N = length(Y)
   if (Eq.Space == F) {
     #nodes = (nodes - min(X))/(max(X) - min(X))
@@ -40,20 +40,20 @@ monotoneBayes = function(X, Y, L = 10, tau0 = 1e-2, nodes = seq(0,1,length.out =
     nodes = seq(0, 1, length.out = L+1)
     #X = (X - min(X))/(max(X) - min(X))
     data.J = X %/% (1/L) + 1
-    data.W = 1/L
+    data.W = rep(1/L,L)
   }
 
 
   dt.stan = list(Y=Y, X = X, J = data.J,  W = data.W, nodes = nodes, L=L, N=N,
                   local_dof_stan = 1,
                   global_dof_stan = 1,
-                  tau0_sq = tau0^2)
+                  tau0_sq = tau0_sq)
   if (prior == "Original HS"){
     model = rstan::sampling(stanmodels$OrgHS, data = dt.stan, ...)
   } else if (prior == "Laplacian"){
-    model = "Laplacian ... TBD..."
-  } else if (prior == "Gaussian ... TBD..."){
-    model = "Gaussian"
+    model = rstan::sampling(stanmodels$Laplacian, data = dt.stan, ...)
+  } else if (prior == "Gaussian"){
+    model = rstan::sampling(stanmodels$Gaussian, data = dt.stan, ...)
   } else {
     if (fix == T) {
       dt.stan$c_sq = c_sq

@@ -8,13 +8,13 @@ monotoneBayes(
   X,
   Y,
   L = 10,
-  tau0 = 0.01,
+  tau0_sq = 0.01,
   nodes = seq(0, 1, length.out = 10 + 1),
   Eq.Space = T,
   c_sq = 10^2,
   fix = F,
   c_alpha = 1,
-  c_beta = 1 * 4,
+  c_beta = 1 * 200,
   prior = "Regularized HS",
   ...
 )
@@ -26,7 +26,7 @@ monotoneBayes(
 
 \item{L}{input the number of user-defined interval}
 
-\item{tau0}{input hyperparameter}
+\item{tau0_sq}{Input hyper-parameter for tau}
 
 \item{nodes}{default 0,1/L,2/L,...L/L: user-defined nodes point}
 

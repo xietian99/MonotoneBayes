@@ -53,7 +53,7 @@ transformed parameters {
   vector<lower = 0.0>[L] lambda_sq;
   real<lower = 0.0> denominator;
 
-  //phil Xi: fitted probabilities at x=0,1/L,...,1
+  //phil Xi: fitted probabilities at x=t0,t1,...,tL
   vector<lower = 0.0, upper = 1.0>[L+1] xi;
 
 
