@@ -2,6 +2,9 @@
 
 export(monotoneBayes)
 export(plotModel)
+export(predictCov)
+export(predictCurve)
+export(predictModel)
 export(sumStats)
 import(Rcpp)
 import(methods)
