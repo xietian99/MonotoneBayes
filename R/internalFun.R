@@ -3,7 +3,7 @@
 #' @param x value
 #' @noRd
 logit = function(x){
-  return(log(x/(1-x)))
+  return(qlogis(x))
 }
 
 #' expit
@@ -11,5 +11,5 @@ logit = function(x){
 #' @param x value
 #' @noRd
 expit = function(x){
-  return(exp(x)/(1+exp(x)))
+  return(plogis(x))
 }

@@ -38,7 +38,7 @@ predictCov = function(model, grid.eq = T, node.t, newX, newZ, returnCI = T){
   }
 
   y.mean = colMeans(y)
-  y.CI = apply(y, 2, quantile,probs = c(0.5, 0.025, 0.975))
+  y.CI = apply(y, 2, quantile,probs = c(0.5, 0.025, 0.975), na.rm =T)
   y.all <-list("mean" = y.mean, "median" = y.CI[1,],
                "l.ci" = y.CI[2,], "u.ci" = y.CI[3,])
 
