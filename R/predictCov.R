@@ -30,7 +30,7 @@ predictCov = function(model, grid.eq = T, node.t, newX, newZ, returnCI = T){
     if (j == 1){
       y[,i] = ( newX[i] * rs.sampler$alpha[,1] + 1 ) / rs.sampler$denominator
     } else {
-      y[,i] = ( rs.sampler$cumsum_alphaW[,j-1] + (newX[i]-node.t[j-1]) * rs.sampler$alpha[,j] + 1  ) / rs.sampler$denominator
+      y[,i] = ( rs.sampler$cumsum_alphaW[,j-1] + (newX[i]-node.t[j]) * rs.sampler$alpha[,j] + 1  ) / rs.sampler$denominator
     }
     y[,i] = logit(y[,i])
     y[,i] = y[,i] + newZ[i] * rs.sampler$Gamma
