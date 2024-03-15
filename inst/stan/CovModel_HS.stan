@@ -95,7 +95,7 @@ transformed parameters {
     if (J[i] == 1)
       base[i] = ( X[i] * alpha[1] + 1 ) / denominator  ;
     else
-      base[i] = ( cumsum_alphaW[J[i]-1] + (X[i]-nodes[J[i]-1]) * alpha[J[i]] + 1  ) / denominator;
+      base[i] = ( cumsum_alphaW[J[i]-1] + (X[i]-nodes[J[i]]) * alpha[J[i]] + 1  ) / denominator;
 
     // p[i] = base[i];
     // logit
