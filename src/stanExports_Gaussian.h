@@ -93,9 +93,9 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'Gaussian', line 47, column 2 to column 30)",
                                                       " (in 'Gaussian', line 48, column 2 to column 44)",
                                                       " (in 'Gaussian', line 49, column 2 to column 45)",
-                                                      " (in 'Gaussian', line 54, column 6 to column 95)",
+                                                      " (in 'Gaussian', line 54, column 6 to column 93)",
                                                       " (in 'Gaussian', line 52, column 7 to column 54)",
-                                                      " (in 'Gaussian', line 51, column 4 to line 54, column 95)",
+                                                      " (in 'Gaussian', line 51, column 4 to line 54, column 93)",
                                                       " (in 'Gaussian', line 50, column 16 to line 55, column 3)",
                                                       " (in 'Gaussian', line 50, column 2 to line 55, column 3)",
                                                       " (in 'Gaussian', line 56, column 2 to column 26)",
@@ -528,7 +528,7 @@ public:
           current_statement__ = 19;
           assign(p, cons_list(index_uni(i), nil_index_list()),
             (((cumsum_alphaW[((J[(i - 1)] - 1) - 1)] +
-                ((X[(i - 1)] - nodes[((J[(i - 1)] - 1) - 1)]) *
+                ((X[(i - 1)] - nodes[(J[(i - 1)] - 1)]) *
                   alpha[(J[(i - 1)] - 1)])) + 1) / denominator),
             "assigning variable p");
         }}
@@ -726,7 +726,7 @@ public:
           current_statement__ = 19;
           assign(p, cons_list(index_uni(i), nil_index_list()),
             (((cumsum_alphaW[((J[(i - 1)] - 1) - 1)] +
-                ((X[(i - 1)] - nodes[((J[(i - 1)] - 1) - 1)]) *
+                ((X[(i - 1)] - nodes[(J[(i - 1)] - 1)]) *
                   alpha[(J[(i - 1)] - 1)])) + 1) / denominator),
             "assigning variable p");
         }}

@@ -98,9 +98,9 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'RegHS', line 57, column 2 to column 30)",
                                                       " (in 'RegHS', line 58, column 2 to column 44)",
                                                       " (in 'RegHS', line 59, column 2 to column 45)",
-                                                      " (in 'RegHS', line 64, column 6 to column 95)",
+                                                      " (in 'RegHS', line 64, column 6 to column 93)",
                                                       " (in 'RegHS', line 62, column 6 to column 53)",
-                                                      " (in 'RegHS', line 61, column 4 to line 64, column 95)",
+                                                      " (in 'RegHS', line 61, column 4 to line 64, column 93)",
                                                       " (in 'RegHS', line 60, column 16 to line 65, column 3)",
                                                       " (in 'RegHS', line 60, column 2 to line 65, column 3)",
                                                       " (in 'RegHS', line 66, column 2 to column 26)",
@@ -640,7 +640,7 @@ public:
           current_statement__ = 24;
           assign(p, cons_list(index_uni(i), nil_index_list()),
             (((cumsum_alphaW[((J[(i - 1)] - 1) - 1)] +
-                ((X[(i - 1)] - nodes[((J[(i - 1)] - 1) - 1)]) *
+                ((X[(i - 1)] - nodes[(J[(i - 1)] - 1)]) *
                   alpha[(J[(i - 1)] - 1)])) + 1) / denominator),
             "assigning variable p");
         }}
@@ -901,7 +901,7 @@ public:
           current_statement__ = 24;
           assign(p, cons_list(index_uni(i), nil_index_list()),
             (((cumsum_alphaW[((J[(i - 1)] - 1) - 1)] +
-                ((X[(i - 1)] - nodes[((J[(i - 1)] - 1) - 1)]) *
+                ((X[(i - 1)] - nodes[(J[(i - 1)] - 1)]) *
                   alpha[(J[(i - 1)] - 1)])) + 1) / denominator),
             "assigning variable p");
         }}
