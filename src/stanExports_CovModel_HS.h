@@ -113,9 +113,10 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'CovModel_HS', line 99, column 2 to column 35)",
                                                       " (in 'CovModel_HS', line 100, column 2 to column 70)",
                                                       " (in 'CovModel_HS', line 101, column 2 to column 43)",
-                                                      " (in 'CovModel_HS', line 104, column 4 to column 27)",
-                                                      " (in 'CovModel_HS', line 103, column 17 to line 105, column 3)",
-                                                      " (in 'CovModel_HS', line 103, column 2 to line 105, column 3)",
+                                                      " (in 'CovModel_HS', line 102, column 2 to column 27)",
+                                                      " (in 'CovModel_HS', line 105, column 4 to column 27)",
+                                                      " (in 'CovModel_HS', line 104, column 17 to line 106, column 3)",
+                                                      " (in 'CovModel_HS', line 104, column 2 to line 106, column 3)",
                                                       " (in 'CovModel_HS', line 16, column 2 to column 17)",
                                                       " (in 'CovModel_HS', line 17, column 2 to column 17)",
                                                       " (in 'CovModel_HS', line 18, column 31 to column 34)",
@@ -187,29 +188,29 @@ public:
       pos__ = std::numeric_limits<int>::min();
       
       pos__ = 1;
-      current_statement__ = 42;
+      current_statement__ = 43;
       context__.validate_dims("data initialization","N","int",
           context__.to_vec());
       N = std::numeric_limits<int>::min();
       
-      current_statement__ = 42;
-      N = context__.vals_i("N")[(1 - 1)];
-      current_statement__ = 42;
-      current_statement__ = 42;
-      check_greater_or_equal(function__, "N", N, 0);
       current_statement__ = 43;
+      N = context__.vals_i("N")[(1 - 1)];
+      current_statement__ = 43;
+      current_statement__ = 43;
+      check_greater_or_equal(function__, "N", N, 0);
+      current_statement__ = 44;
       context__.validate_dims("data initialization","L","int",
           context__.to_vec());
       L = std::numeric_limits<int>::min();
       
-      current_statement__ = 43;
-      L = context__.vals_i("L")[(1 - 1)];
-      current_statement__ = 43;
-      current_statement__ = 43;
-      check_greater_or_equal(function__, "L", L, 1);
       current_statement__ = 44;
-      validate_non_negative_index("nodes", "L + 1", (L + 1));
+      L = context__.vals_i("L")[(1 - 1)];
+      current_statement__ = 44;
+      current_statement__ = 44;
+      check_greater_or_equal(function__, "L", L, 1);
       current_statement__ = 45;
+      validate_non_negative_index("nodes", "L + 1", (L + 1));
+      current_statement__ = 46;
       context__.validate_dims("data initialization","nodes","double",
           context__.to_vec((L + 1)));
       nodes = Eigen::Matrix<double, -1, 1>((L + 1));
@@ -217,34 +218,34 @@ public:
       
       {
         std::vector<local_scalar_t__> nodes_flat__;
-        current_statement__ = 45;
+        current_statement__ = 46;
         assign(nodes_flat__, nil_index_list(), context__.vals_r("nodes"),
           "assigning variable nodes_flat__");
-        current_statement__ = 45;
+        current_statement__ = 46;
         pos__ = 1;
-        current_statement__ = 45;
+        current_statement__ = 46;
         for (int sym1__ = 1; sym1__ <= (L + 1); ++sym1__) {
-          current_statement__ = 45;
+          current_statement__ = 46;
           assign(nodes, cons_list(index_uni(sym1__), nil_index_list()),
             nodes_flat__[(pos__ - 1)], "assigning variable nodes");
-          current_statement__ = 45;
+          current_statement__ = 46;
           pos__ = (pos__ + 1);}
       }
-      current_statement__ = 45;
+      current_statement__ = 46;
       for (int sym1__ = 1; sym1__ <= (L + 1); ++sym1__) {
-        current_statement__ = 45;
-        current_statement__ = 45;
+        current_statement__ = 46;
+        current_statement__ = 46;
         check_greater_or_equal(function__, "nodes[sym1__]",
                                nodes[(sym1__ - 1)], 0.0);}
-      current_statement__ = 45;
+      current_statement__ = 46;
       for (int sym1__ = 1; sym1__ <= (L + 1); ++sym1__) {
-        current_statement__ = 45;
-        current_statement__ = 45;
+        current_statement__ = 46;
+        current_statement__ = 46;
         check_less_or_equal(function__, "nodes[sym1__]", nodes[(sym1__ - 1)],
                             1.0);}
-      current_statement__ = 46;
-      validate_non_negative_index("W", "L", L);
       current_statement__ = 47;
+      validate_non_negative_index("W", "L", L);
+      current_statement__ = 48;
       context__.validate_dims("data initialization","W","double",
           context__.to_vec(L));
       W = Eigen::Matrix<double, -1, 1>(L);
@@ -252,53 +253,53 @@ public:
       
       {
         std::vector<local_scalar_t__> W_flat__;
-        current_statement__ = 47;
+        current_statement__ = 48;
         assign(W_flat__, nil_index_list(), context__.vals_r("W"),
           "assigning variable W_flat__");
-        current_statement__ = 47;
+        current_statement__ = 48;
         pos__ = 1;
-        current_statement__ = 47;
+        current_statement__ = 48;
         for (int sym1__ = 1; sym1__ <= L; ++sym1__) {
-          current_statement__ = 47;
+          current_statement__ = 48;
           assign(W, cons_list(index_uni(sym1__), nil_index_list()),
             W_flat__[(pos__ - 1)], "assigning variable W");
-          current_statement__ = 47;
+          current_statement__ = 48;
           pos__ = (pos__ + 1);}
       }
-      current_statement__ = 47;
+      current_statement__ = 48;
       for (int sym1__ = 1; sym1__ <= L; ++sym1__) {
-        current_statement__ = 47;
-        current_statement__ = 47;
+        current_statement__ = 48;
+        current_statement__ = 48;
         check_greater_or_equal(function__, "W[sym1__]", W[(sym1__ - 1)], 0.0);
       }
-      current_statement__ = 47;
-      for (int sym1__ = 1; sym1__ <= L; ++sym1__) {
-        current_statement__ = 47;
-        current_statement__ = 47;
-        check_less_or_equal(function__, "W[sym1__]", W[(sym1__ - 1)], 1.0);}
       current_statement__ = 48;
-      validate_non_negative_index("Y", "N", N);
+      for (int sym1__ = 1; sym1__ <= L; ++sym1__) {
+        current_statement__ = 48;
+        current_statement__ = 48;
+        check_less_or_equal(function__, "W[sym1__]", W[(sym1__ - 1)], 1.0);}
       current_statement__ = 49;
+      validate_non_negative_index("Y", "N", N);
+      current_statement__ = 50;
       context__.validate_dims("data initialization","Y","int",
           context__.to_vec(N));
       Y = std::vector<int>(N, std::numeric_limits<int>::min());
       
-      current_statement__ = 49;
+      current_statement__ = 50;
       assign(Y, nil_index_list(), context__.vals_i("Y"),
         "assigning variable Y");
-      current_statement__ = 49;
-      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-        current_statement__ = 49;
-        current_statement__ = 49;
-        check_greater_or_equal(function__, "Y[sym1__]", Y[(sym1__ - 1)], 0);}
-      current_statement__ = 49;
-      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-        current_statement__ = 49;
-        current_statement__ = 49;
-        check_less_or_equal(function__, "Y[sym1__]", Y[(sym1__ - 1)], 1);}
       current_statement__ = 50;
-      validate_non_negative_index("X", "N", N);
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        current_statement__ = 50;
+        current_statement__ = 50;
+        check_greater_or_equal(function__, "Y[sym1__]", Y[(sym1__ - 1)], 0);}
+      current_statement__ = 50;
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        current_statement__ = 50;
+        current_statement__ = 50;
+        check_less_or_equal(function__, "Y[sym1__]", Y[(sym1__ - 1)], 1);}
       current_statement__ = 51;
+      validate_non_negative_index("X", "N", N);
+      current_statement__ = 52;
       context__.validate_dims("data initialization","X","double",
           context__.to_vec(N));
       X = Eigen::Matrix<double, -1, 1>(N);
@@ -306,139 +307,139 @@ public:
       
       {
         std::vector<local_scalar_t__> X_flat__;
-        current_statement__ = 51;
+        current_statement__ = 52;
         assign(X_flat__, nil_index_list(), context__.vals_r("X"),
           "assigning variable X_flat__");
-        current_statement__ = 51;
+        current_statement__ = 52;
         pos__ = 1;
-        current_statement__ = 51;
+        current_statement__ = 52;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 51;
+          current_statement__ = 52;
           assign(X, cons_list(index_uni(sym1__), nil_index_list()),
             X_flat__[(pos__ - 1)], "assigning variable X");
-          current_statement__ = 51;
+          current_statement__ = 52;
           pos__ = (pos__ + 1);}
       }
-      current_statement__ = 51;
+      current_statement__ = 52;
       for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-        current_statement__ = 51;
-        current_statement__ = 51;
+        current_statement__ = 52;
+        current_statement__ = 52;
         check_greater_or_equal(function__, "X[sym1__]", X[(sym1__ - 1)], 0.0);
       }
-      current_statement__ = 51;
-      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-        current_statement__ = 51;
-        current_statement__ = 51;
-        check_less_or_equal(function__, "X[sym1__]", X[(sym1__ - 1)], 1.0);}
       current_statement__ = 52;
-      validate_non_negative_index("J", "N", N);
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        current_statement__ = 52;
+        current_statement__ = 52;
+        check_less_or_equal(function__, "X[sym1__]", X[(sym1__ - 1)], 1.0);}
       current_statement__ = 53;
+      validate_non_negative_index("J", "N", N);
+      current_statement__ = 54;
       context__.validate_dims("data initialization","J","int",
           context__.to_vec(N));
       J = std::vector<int>(N, std::numeric_limits<int>::min());
       
-      current_statement__ = 53;
+      current_statement__ = 54;
       assign(J, nil_index_list(), context__.vals_i("J"),
         "assigning variable J");
-      current_statement__ = 53;
-      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-        current_statement__ = 53;
-        current_statement__ = 53;
-        check_greater_or_equal(function__, "J[sym1__]", J[(sym1__ - 1)], 1);}
-      current_statement__ = 53;
-      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-        current_statement__ = 53;
-        current_statement__ = 53;
-        check_less_or_equal(function__, "J[sym1__]", J[(sym1__ - 1)], L);}
       current_statement__ = 54;
-      validate_non_negative_index("Z", "N", N);
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        current_statement__ = 54;
+        current_statement__ = 54;
+        check_greater_or_equal(function__, "J[sym1__]", J[(sym1__ - 1)], 1);}
+      current_statement__ = 54;
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        current_statement__ = 54;
+        current_statement__ = 54;
+        check_less_or_equal(function__, "J[sym1__]", J[(sym1__ - 1)], L);}
       current_statement__ = 55;
+      validate_non_negative_index("Z", "N", N);
+      current_statement__ = 56;
       context__.validate_dims("data initialization","Z","int",
           context__.to_vec(N));
       Z = std::vector<int>(N, std::numeric_limits<int>::min());
       
-      current_statement__ = 55;
+      current_statement__ = 56;
       assign(Z, nil_index_list(), context__.vals_i("Z"),
         "assigning variable Z");
-      current_statement__ = 55;
-      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-        current_statement__ = 55;
-        current_statement__ = 55;
-        check_greater_or_equal(function__, "Z[sym1__]", Z[(sym1__ - 1)], 0);}
-      current_statement__ = 55;
-      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-        current_statement__ = 55;
-        current_statement__ = 55;
-        check_less_or_equal(function__, "Z[sym1__]", Z[(sym1__ - 1)], 1);}
       current_statement__ = 56;
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        current_statement__ = 56;
+        current_statement__ = 56;
+        check_greater_or_equal(function__, "Z[sym1__]", Z[(sym1__ - 1)], 0);}
+      current_statement__ = 56;
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        current_statement__ = 56;
+        current_statement__ = 56;
+        check_less_or_equal(function__, "Z[sym1__]", Z[(sym1__ - 1)], 1);}
+      current_statement__ = 57;
       context__.validate_dims("data initialization","c_sq_shape","double",
           context__.to_vec());
       c_sq_shape = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 56;
-      c_sq_shape = context__.vals_r("c_sq_shape")[(1 - 1)];
-      current_statement__ = 56;
-      current_statement__ = 56;
-      check_greater_or_equal(function__, "c_sq_shape", c_sq_shape, 0.0);
       current_statement__ = 57;
+      c_sq_shape = context__.vals_r("c_sq_shape")[(1 - 1)];
+      current_statement__ = 57;
+      current_statement__ = 57;
+      check_greater_or_equal(function__, "c_sq_shape", c_sq_shape, 0.0);
+      current_statement__ = 58;
       context__.validate_dims("data initialization","c_sq_scale","double",
           context__.to_vec());
       c_sq_scale = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 57;
-      c_sq_scale = context__.vals_r("c_sq_scale")[(1 - 1)];
-      current_statement__ = 57;
-      current_statement__ = 57;
-      check_greater_or_equal(function__, "c_sq_scale", c_sq_scale, 0.0);
       current_statement__ = 58;
+      c_sq_scale = context__.vals_r("c_sq_scale")[(1 - 1)];
+      current_statement__ = 58;
+      current_statement__ = 58;
+      check_greater_or_equal(function__, "c_sq_scale", c_sq_scale, 0.0);
+      current_statement__ = 59;
       context__.validate_dims("data initialization","local_dof_stan",
           "double",context__.to_vec());
       local_dof_stan = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 58;
+      current_statement__ = 59;
       local_dof_stan = context__.vals_r("local_dof_stan")[(1 - 1)];
-      current_statement__ = 58;
-      current_statement__ = 58;
+      current_statement__ = 59;
+      current_statement__ = 59;
       check_greater_or_equal(function__, "local_dof_stan", local_dof_stan,
                              0.0);
-      current_statement__ = 59;
+      current_statement__ = 60;
       context__.validate_dims("data initialization","global_dof_stan",
           "double",context__.to_vec());
       global_dof_stan = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 59;
+      current_statement__ = 60;
       global_dof_stan = context__.vals_r("global_dof_stan")[(1 - 1)];
-      current_statement__ = 59;
-      current_statement__ = 59;
+      current_statement__ = 60;
+      current_statement__ = 60;
       check_greater_or_equal(function__, "global_dof_stan", global_dof_stan,
                              0.0);
-      current_statement__ = 60;
+      current_statement__ = 61;
       context__.validate_dims("data initialization","tau0_sq","double",
           context__.to_vec());
       tau0_sq = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 60;
-      tau0_sq = context__.vals_r("tau0_sq")[(1 - 1)];
-      current_statement__ = 60;
-      current_statement__ = 60;
-      check_greater_or_equal(function__, "tau0_sq", tau0_sq, 0.0);
       current_statement__ = 61;
-      validate_non_negative_index("alpha_base", "L", L);
+      tau0_sq = context__.vals_r("tau0_sq")[(1 - 1)];
+      current_statement__ = 61;
+      current_statement__ = 61;
+      check_greater_or_equal(function__, "tau0_sq", tau0_sq, 0.0);
       current_statement__ = 62;
-      validate_non_negative_index("lambda_base_sq", "L", L);
+      validate_non_negative_index("alpha_base", "L", L);
       current_statement__ = 63;
-      validate_non_negative_index("lambda_scale_sq", "L", L);
+      validate_non_negative_index("lambda_base_sq", "L", L);
       current_statement__ = 64;
-      validate_non_negative_index("alpha", "L", L);
+      validate_non_negative_index("lambda_scale_sq", "L", L);
       current_statement__ = 65;
-      validate_non_negative_index("cumsum_alphaW", "L", L);
+      validate_non_negative_index("alpha", "L", L);
       current_statement__ = 66;
-      validate_non_negative_index("theta", "L", L);
+      validate_non_negative_index("cumsum_alphaW", "L", L);
       current_statement__ = 67;
-      validate_non_negative_index("lambda_sq", "L", L);
+      validate_non_negative_index("theta", "L", L);
       current_statement__ = 68;
-      validate_non_negative_index("base", "N", N);
+      validate_non_negative_index("lambda_sq", "L", L);
       current_statement__ = 69;
+      validate_non_negative_index("base", "N", N);
+      current_statement__ = 70;
       validate_non_negative_index("p", "N", N);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -734,9 +735,11 @@ public:
             (local_dof_stan / 2.0)));
         current_statement__ = 38;
         lp_accum__.add(inv_gamma_lpdf<propto__>(c_sq, c_sq_shape, c_sq_scale));
-        current_statement__ = 41;
+        current_statement__ = 39;
+        lp_accum__.add(normal_lpdf<propto__>(Gamma, 0.0, 5.0));
+        current_statement__ = 42;
         for (int i = 1; i <= N; ++i) {
-          current_statement__ = 39;
+          current_statement__ = 40;
           lp_accum__.add(bernoulli_lpmf<propto__>(Y[(i - 1)], p[(i - 1)]));}
       }
     } catch (const std::exception& e) {

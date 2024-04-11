@@ -26,7 +26,7 @@
 #' @importFrom rstan sampling stan
 #' @importFrom stats quantile
 
-monotoneBayes = function(X, Y, Z, L = 10, tau0_sq = 1e-2, nodes = seq(0,1,length.out = 10+1), Eq.Space = T,
+monotoneBayes = function(X, Y, Z=NULL, L = 10, tau0_sq = 1e-2, nodes = seq(0,1,length.out = 10+1), Eq.Space = T,
                          c_sq = 10^2, fix = F,
                          c_alpha = 1, c_beta = 1 * 200, prior = "Regularized HS", ...){
   N = length(Y)

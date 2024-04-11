@@ -7,7 +7,7 @@
 monotoneBayes(
   X,
   Y,
-  Z,
+  Z = NULL,
   L = 10,
   tau0_sq = 0.01,
   nodes = seq(0, 1, length.out = 10 + 1),

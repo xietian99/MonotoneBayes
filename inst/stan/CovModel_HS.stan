@@ -54,7 +54,7 @@ parameters {
   // Beta0 / Beta1: decomposed into chi-square (N^2) and inverse-gamma
   real<lower = 0.0> gamma;
 
-  // Parameter : coefficient for covariates X
+  // Parameter : coefficient for covariates Z
   real Gamma;
 
 }
@@ -122,6 +122,7 @@ model {
   lambda_base_sq ~ chi_square(1.0);
   lambda_scale_sq ~ inv_gamma(local_dof_stan/2.0, local_dof_stan/2.0);
   c_sq ~ inv_gamma(c_sq_shape, c_sq_scale);
+  Gamma ~ normal(0.0, 5.0);
   // likelihood
   for (i in 1:N) {
     Y[i] ~ bernoulli(p[i]);

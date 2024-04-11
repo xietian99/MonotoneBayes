@@ -5,14 +5,10 @@
 \title{Title
 Mar 6: this is corrected version of predict function: return posterior mean/median and 95\% crediable interval}
 \usage{
-predictModel(model, L, method = "mean", grid.eq = T, node.t, newdata)
+predictModel(model, grid.eq = T, node.t, newdata)
 }
 \arguments{
 \item{model}{Fitted Model}
-
-\item{L}{the pre-defined L for model}
-
-\item{method}{posteiror mean or median used}
 
 \item{grid.eq}{equal grid, if F need to provide node.t below}
 
@@ -21,7 +17,7 @@ predictModel(model, L, method = "mean", grid.eq = T, node.t, newdata)
 \item{newdata}{newdata}
 }
 \value{
-a vector of fitted prob at given x
+a list containing posteiror mean, median and 95\% C.I. of fitted prob at given x
 }
 \description{
 Title
