@@ -22,7 +22,7 @@ data {
   vector<lower=0.0, upper=1.0>[N] X; // dose level
   int<lower = 1, upper = L> J[N]; // which interval X falls in
 
-  int<lower=0, upper =1> Z[N]; //covariate, future could be extended to matrix, and no constraints on scale of X
+  int<lower=0, upper = 1> Z[N]; //covariate, future could be extended to matrix, and no constraints on scale of X
 
 
   // Define the global/local parameter and hyperparameter of priors and C

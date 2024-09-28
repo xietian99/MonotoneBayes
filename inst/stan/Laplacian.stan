@@ -17,7 +17,7 @@ data {
   real<lower = 0.0> local_dof_stan; // ??degree of freedom of pi(lambda), = 1
   real<lower = 0.0> global_dof_stan; //phil-added ??degree of freedom of pi(tau), = 1
 
-  real<lower = 0.0> tau0_sq; //phil-added
+  real<lower = 0.0> tau0_sq;
 }
 
 // The parameters accepted by the model. Our model
@@ -93,7 +93,7 @@ transformed parameters {
 // 'y' to be normally distributed with mean 'mu'
 // and standard deviation 'sigma'.
 //phil is the above statement really true? I don't see that y is normally
-//phil distributed.
+//phil disteeeeeeributed.
 model {
   // Priors
   alpha_base ~ normal(0.0, 1.0);
