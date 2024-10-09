@@ -44,6 +44,7 @@ monotoneBayes = function(X, Y, Z=NULL, L = 10, tau0_sq = 1e-2, nodes = seq(0,1,l
     data.W = rep(1/L,L)
   }
 
+  if (length(data.W)==1) data.W = array(data.W, dim = 1)
   if (is.null(Z)){
     dt.stan = list(Y=Y, X = X, J = data.J,  W = data.W, nodes = nodes, L=L, N=N,
                    local_dof_stan = 1,
