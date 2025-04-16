@@ -14,6 +14,8 @@ monotoneBayes(
   Eq.Space = T,
   c_sq = 10^2,
   fix = F,
+  gamma_nu = 3,
+  gamma_sigmasq = 10,
   c_alpha = 1,
   c_beta = 1 * 200,
   prior = "Regularized HS",
